@@ -451,13 +451,8 @@ static void render_con_tabbed(Con *con, Con *child, render_params *p, int i) {
         child->deco_rect.width += (child->rect.width - (child->deco_rect.x + child->deco_rect.width));
     }
 
-    if (p->children > 1 || (child->border_style != BS_PIXEL && child->border_style != BS_NONE)) {
-        child->rect.y += p->deco_height;
-        child->rect.height -= p->deco_height;
-        child->deco_rect.height = p->deco_height;
-    } else {
-        child->deco_rect.height = (child->border_style == BS_PIXEL ? 1 : 0);
-    }
+    // Changed by kovid to never draw a tab bar
+    child->deco_rect.height = 0;
 }
 
 static void render_con_dockarea(Con *con, Con *child, render_params *p) {
